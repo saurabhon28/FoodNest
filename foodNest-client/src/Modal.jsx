@@ -18,7 +18,8 @@ const OVERLAY_STYLES = {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "rgba(0,0,0,.7)",
+  backgroundColor: "rgba(0, 0, 0, .7)",
+  zIndex: 1000,
 };
 
 export default function Modal({ children, onClose }) {
@@ -28,7 +29,7 @@ export default function Modal({ children, onClose }) {
       <div style={MODAL_STYLES}>
         <button
           className="btn btn-danger fs-4"
-          style={{ margin: "90%", marginTop: "-35px" }}
+          style={{ position: "absolute", top: "-25px", right: "-25px" }}
           onClick={onClose}>
           X
         </button>

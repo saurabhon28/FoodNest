@@ -21,9 +21,9 @@ const reducer = (state, action) => {
       let newArr = [...state];
       newArr.splice(action.index, 1);
       return newArr;
-    case "UPDATA":
+    case "UPDATE":
       let arr = [...state];
-      arr.find((food, index) => {
+      arr.forEach((food, index) => {
         if (food.id === action.id) {
           console.log(
             food.qty,
@@ -37,6 +37,7 @@ const reducer = (state, action) => {
           };
         }
       });
+      return arr;
     default:
       console.log("error in reducer");
       return state; // Return current state in default case

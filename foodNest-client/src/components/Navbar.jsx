@@ -7,6 +7,7 @@ import { useCart } from "./contextReducer";
 
 function Navbar() {
   let data = useCart();
+  console.log(data.length);
   const navigate = useNavigate();
   // cart portal view logic
   const [cartView, setCartView] = useState(false);
@@ -14,6 +15,10 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
+  };
+
+  const loadCart = () => {
+    setCartView(true);
   };
 
   return (
@@ -68,9 +73,7 @@ function Navbar() {
               <div>
                 <div
                   className="btn bg-white text-success mx-1"
-                  onClick={() => {
-                    setCartView(true);
-                  }}>
+                  onClick={loadCart}>
                   My Cart
                   <span className="badge text-bg-danger m-2">
                     {data.length}

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useCart, useDispatchCart } from "./contextReducer";
-import { Link, useNavigate } from "react-router-dom";
 
 function Card({ options, foodItem }) {
   let dispatch = useDispatchCart();
