@@ -2,6 +2,8 @@ import express from "express";
 import { body } from "express-validator";
 import { addFoodItems, getFood } from "../controllers/foodControllers.js";
 import { loginUser, registerUser } from "../controllers/usersControlers.js";
+import { myOrderData, orderData } from "../controllers/orderControllers.js";
+import { addVendorDetails } from "../controllers/vendorsControllers.js";
 
 //validation
 const registerValidation = [
@@ -25,5 +27,8 @@ router.post("/addFood", addFoodItems);
 router.get("/getFood", getFood);
 router.post("/registerUser", registerValidation, registerUser);
 router.post("/loginUser", loginValidation, loginUser);
+router.post("/orders", orderData);
+router.post("/myOrders", myOrderData);
+router.post("/vendorRegitration", addVendorDetails);
 
 export default router;

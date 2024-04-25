@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart, useDispatchCart } from "../components/contextReducer";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import axios from "axios";
 
 function Cart() {
   let data = useCart();
@@ -15,11 +16,51 @@ function Cart() {
   }
 
   //checkout
-  const handleCheckOut = () => {};
+  const handleCheckOut = async () => {
+    let userEmail = localStorage.getItem("userEmail");
+    console.log(userEmail);
+
+    // Check if userEmail exists and is valid
+    if (!userEmail) {
+      console.error("No user email found.");
+      return;
+    }
+
+    const orders = {
+      order_data: data, // Ensure 'data' is defined and is an array
+      email: userEmail,
+      order_date: new Date().toDateString(), // Double-check this format is expected
+    };
+
+    console.log(orders);
+    try {
+      let response = await axios.post(
+        "http://localhost:5000/api/food/orders",
+        orders,
+        {
+          headers: { "Content-Type": "application/json" }, // Ensure correct content type
+        }
+      );
+
+      console.log("Order response:", response);
+
+      // Check response status from the HTTP response
+      if (response.status === 200 || response.status === 201) {
+        dispatch({ type: "DROP" }); // Ensure 'dispatch' is defined and behaves as expected
+      } else {
+        console.error("Unexpected response status:", response.status);
+      }
+    } catch (error) {
+      console.error(
+        "Axios request failed:",
+        error.response?.data || error.message
+      );
+    }
+  };
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
   return (
-    <div>
+    <div className="mt-5">
       <div className="container m-auto mt-5 table-responsive table-responsive-sm table-responsive-md">
         <table className="table table-hover">
           <thead className="text-success fs-4">

@@ -38,6 +38,9 @@ const reducer = (state, action) => {
         }
       });
       return arr;
+    case "DROP":
+      let emptyArr = [];
+      return emptyArr;
     default:
       console.log("error in reducer");
       return state; // Return current state in default case

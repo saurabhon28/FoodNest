@@ -16,7 +16,10 @@ function RegisterPage() {
         "http://localhost:5000/api/food/registerUser",
         user
       );
-      console.log(response);
+
+      if (response) {
+        return alert(response.data.message);
+      }
       setName("");
       setEmail("");
       setPassword("");
@@ -29,7 +32,7 @@ function RegisterPage() {
     <>
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-3 mt-5">
             <label htmlFor="name" className="form-label">
               Name
             </label>

@@ -16,3 +16,17 @@
 #carouselExample {
   object-fit: contain !important;
 }
+
+.content {
+  padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 56px; /* Adjust based on your navbar's height */
+    left: 0;
+    width: 100%;
+    background-color: white; /* Same as navbar's background color */
+  }
+}

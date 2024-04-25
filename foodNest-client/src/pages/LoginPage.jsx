@@ -15,6 +15,7 @@ function LoginPage() {
         "http://localhost:5000/api/food/loginUser",
         user
       );
+
       console.log(response);
       const data = response.data;
       console.log(data);
@@ -24,8 +25,13 @@ function LoginPage() {
       }
 
       if (data) {
+        localStorage.setItem("userEmail", data.data.email);
         localStorage.setItem("token", data.token);
         navigate("/"); //navigate to home page
+      }
+
+      if (response) {
+        return alert(response.data.message);
       }
 
       setEmail("");
@@ -39,7 +45,7 @@ function LoginPage() {
     <>
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-3 mt-5">
             <label htmlFor="email" className="form-label">
               E-mail
             </label>

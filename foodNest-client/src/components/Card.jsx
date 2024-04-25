@@ -63,16 +63,17 @@ function Card({ options, foodItem }) {
 
   return (
     <div>
-      <div className="card mt-5 ml-5" style={{ width: "18rem" }}>
+      <div
+        className="card mt-5 ml-5"
+        style={{ width: "18rem", height: "25rem" }}>
         <img
           className="card-img-top"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", height: "60%" }}
           src={foodItem.image}
           alt="Card image cap"
         />
-        <div className="card-body">
+        <div className="card-body d-flex flex-column justify-content-between">
           <h5 className="card-title">{foodItem.name}</h5>
-          {/* <p className="card-text">{description}</p> */}
           <div className="container w-100">
             <select
               className="m-2 h-100 w-10 bg-success rounded"
@@ -97,13 +98,12 @@ function Card({ options, foodItem }) {
             </select>
             <div className="d-inline h-100 fs-5">Rs.{finalPrice}/-</div>
           </div>
+          <button
+            className="btn btn-success justify-center m-3"
+            onClick={handleAddCart}>
+            Add to Cart
+          </button>
         </div>
-        <hr />
-        <button
-          className="btn btn-success justify-center m-3"
-          onClick={handleAddCart}>
-          Add to Cart
-        </button>
       </div>
     </div>
   );

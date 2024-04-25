@@ -22,16 +22,16 @@ function Navbar() {
   };
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div style={{ position: "relative" }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <Link className="navbar-brand" to="https://foodnests.com/">
           <img style={{ height: "50px" }} src={logo} alt="logo" />
         </Link>
         <button
           className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown"
           aria-expanded="false"
           aria-label="Toggle navigation">
@@ -40,18 +40,18 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto mb-2">
             <li className="nav-item active">
-              <Link className="nav-link active fs-5" to="/">
+              <Link className="nav-link active fs-6" to="/">
                 Home
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link className="nav-link active fs-5" to="/vendorRegistration">
+            <li className="nav-item active">
+              <Link className="nav-link active fs-6" to="/vendorRegistration">
                 Vendor Registration
               </Link>
             </li>
             {localStorage.getItem("token") ? (
-              <Link className="nav-link active fs-5" to="/">
+              <Link className="nav-link active fs-6" to="/myOrder">
                 My Orders
               </Link>
             ) : (
@@ -72,7 +72,7 @@ function Navbar() {
             ) : (
               <div>
                 <div
-                  className="btn bg-white text-success mx-1"
+                  className="btn bg-none text-secondary mx-1"
                   onClick={loadCart}>
                   My Cart
                   <span className="badge text-bg-danger m-2">

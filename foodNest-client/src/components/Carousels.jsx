@@ -13,11 +13,6 @@ function Carousels() {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button
-                className="btn btn-outline-success text-white"
-                type="submit">
-                Search
-              </button>
             </form>
           </div>
           <div className="carousel-item active">
