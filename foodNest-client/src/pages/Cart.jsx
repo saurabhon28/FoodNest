@@ -35,7 +35,7 @@ function Cart() {
     console.log(orders);
     try {
       let response = await axios.post(
-        "http://localhost:5000/api/food/orders",
+        "https://foodnest-at1q.onrender.com/api/food/orders",
         orders,
         {
           headers: { "Content-Type": "application/json" }, // Ensure correct content type

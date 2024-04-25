@@ -8,7 +8,9 @@ function HomePage() {
   const [foodItem, setFoodItem] = useState([]);
 
   const loadData = async () => {
-    const response = await axios.get("http://localhost:5000/api/food/getFood");
+    const response = await axios.get(
+      "https://foodnest-at1q.onrender.com/api/food/getFood"
+    );
 
     setFoodItem(response.data[0]);
     setFoodCategory(response.data[1]);

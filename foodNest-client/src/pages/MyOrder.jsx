@@ -8,7 +8,7 @@ export default function MyOrder() {
     const email = localStorage.getItem("userEmail");
 
     const response = await axios.post(
-      "http://localhost:5000/api/food/myOrders",
+      "https://foodnest-at1q.onrender.com/api/food/myOrders",
       { email: email },
       {
         headers: { "Content-Type": "application/json" }, // Ensure correct content type

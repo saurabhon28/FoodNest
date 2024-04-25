@@ -12,7 +12,7 @@ function LoginPage() {
     try {
       const user = { email, password };
       const response = await axios.post(
-        "http://localhost:5000/api/food/loginUser",
+        "https://foodnest-at1q.onrender.com/api/food/loginUser",
         user
       );
 

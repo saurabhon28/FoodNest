@@ -48,7 +48,7 @@ export default function VendorRegistration() {
       };
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/food/vendorRegitration",
+          "https://foodnest-at1q.onrender.com/api/food/vendorRegitration",
           vendor
         );
         setName("");

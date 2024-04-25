@@ -13,7 +13,7 @@ function RegisterPage() {
     try {
       const user = { name, email, password, location };
       const response = await axios.post(
-        "http://localhost:5000/api/food/registerUser",
+        "https://foodnest-at1q.onrender.com/api/food/registerUser",
         user
       );
 
