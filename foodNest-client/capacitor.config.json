@@ -1,0 +1,9 @@
+{
+  "appId": "app.vercel.foodnest",
+  "appName": "foodnest",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -12,8 +12,30 @@ export const loginUser = async (req, res) => {
   }
 
   const { email, password } = req.body;
+
   try {
-    const user = await User.findOne({ email });
+    // Check Redis connection
+    if (!redisClient.isOpen) {
+      // Reconnect to Redis if not connected
+      await redisClient.connect();
+    }
+
+    const cachedUserData = await redisClient.get(`user:${email}`);
+    let user;
+
+    if (cachedUserData) {
+      user = JSON.parse(cachedUserData);
+      console.log("cache hit");
+    } else {
+      // If not cached, query the database
+      user = await User.findOne({ email });
+      if (user) {
+        // Cache user data in Redis
+        await redisClient.set(`user:${email}`, JSON.stringify(user), {
+          EX: 3600, // 1-hour expiration
+        });
+      }
+    }
 
     if (!user) {
       return res.status(400).json({
@@ -31,19 +53,13 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    // Generating JWT token
+    // Generate JWT token
     const tokenData = {
       id: user._id,
     };
     const token = jwt.sign(tokenData, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-
-    // You can use Redis to cache user details, token, or other information
-    await redisClient.set(
-      `user:${user._id}`,
-      JSON.stringify({ name: user.name, email: user.email })
-    );
 
     return res.status(200).json({
       code: 200,
@@ -53,6 +69,7 @@ export const loginUser = async (req, res) => {
       token,
     });
   } catch (error) {
+    console.error("Error during login:", error); // Log the error for debugging
     return res.status(500).json({
       code: 500,
       message: "Internal Server error",
